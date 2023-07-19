@@ -1,3 +1,8 @@
+const initialItems = [
+  { id: 1, description: "Passports", quantity: 2, packed: false },
+  { id: 2, description: "Socks", quantity: 12, packed: false },
+];
+
 export default function App() {
   return (
     <div className="app">
@@ -32,21 +37,24 @@ function Form() {
 function PackingList() {
   return (
     <main className="list">
-      <div className="listItems"></div>
-      <div className="buttons">
+      <ul>
+        {initialItems.map((i) => (
+          <Item item={i} key={i.id} />
+        ))}
+      </ul>
+      {/* <div className="buttons">
         <button>Sort By Input Order</button>
         <button>Clear List</button>
-      </div>
+      </div> */}
     </main>
   );
 }
 function Item({ item }) {
-  console.log({ item });
   return (
     <>
       <span className="item">
         <input type="checkbox" />
-        {item.quantity} {item.name}
+        {item.quantity} {item.description}
         <button className="close">&times;</button>
       </span>
     </>
